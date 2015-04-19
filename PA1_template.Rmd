@@ -22,7 +22,7 @@ The mean is `r mean(daily$steps, na.rm=TRUE)` and the median is `r median(daily$
 Again dplyr is used to find the daily activity pattern, and the interval identifier with on average most number of steps is found with `which.max()`.
 ```{r}
 pattern <- data %>% group_by(interval) %>% summarize(steps =mean(steps, na.rm=TRUE))
-pattern[which.max(fitta$steps), 1]
+pattern[which.max(pattern$steps), 1]
 ```
 
 ## Imputing missing values

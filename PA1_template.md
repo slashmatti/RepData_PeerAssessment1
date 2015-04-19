@@ -26,7 +26,7 @@ Again dplyr is used to find the daily activity pattern, and the interval identif
 
 ```r
 pattern <- data %>% group_by(interval) %>% summarize(steps =mean(steps, na.rm=TRUE))
-pattern[which.max(fitta$steps), 1]
+pattern[which.max(pattern$steps), 1]
 ```
 
 ```
