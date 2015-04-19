@@ -43,7 +43,16 @@ pattern[which.max(pattern$steps), 1]
 ```
 
 ## Imputing missing values
+Missing values are imputed with following code into a new column, that takes the daily average steps calculated previously in `pattern`.
 
+```r
+data.i <- mutate(data, fix.steps = ifelse(!is.na(steps), steps, pattern$steps))
+daily.i <- data.i %>% group_by(date) %>% summarize(steps =sum(fix.steps))
+hist(daily.i$steps)
+```
 
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png) 
+
+With imputed data, the mean is 1.0766189 &times; 10<sup>4</sup> and the median is 1.0766189 &times; 10<sup>4</sup> of the total number of steps taken per day.
 
 ## Are there differences in activity patterns between weekdays and weekends?
