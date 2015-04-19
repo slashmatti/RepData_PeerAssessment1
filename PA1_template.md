@@ -22,10 +22,16 @@ The mean is 1.0766189 &times; 10<sup>4</sup> and the median is 10765 of the tota
 
 
 ## What is the average daily activity pattern?
-Again dplyr is used to find the daily activity pattern, and the interval identifier with on average most number of steps is found with `which.max()`.
+Again dplyr is used to find the daily activity pattern, and the interval identifier with on average most number of steps is found with `which.max()`. The daily average pattern of steps is plotted.
 
 ```r
 pattern <- data %>% group_by(interval) %>% summarize(steps =mean(steps, na.rm=TRUE))
+plot(pattern, type="l")
+```
+
+![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png) 
+
+```r
 pattern[which.max(pattern$steps), 1]
 ```
 
