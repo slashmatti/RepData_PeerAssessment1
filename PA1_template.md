@@ -11,22 +11,6 @@ Using the dplyr package, the number of steps taken each day over dataset's perio
 
 ```r
 library(dplyr)
-```
-
-```
-## 
-## Attaching package: 'dplyr'
-## 
-## The following object is masked from 'package:stats':
-## 
-##     filter
-## 
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-```
-
-```r
 data <- read.csv("activity.csv")
 daily <- data %>% group_by(date) %>% summarize(steps =sum(steps))
 hist(daily$steps)
@@ -38,8 +22,19 @@ The mean is 1.0766189 &times; 10<sup>4</sup> and the median is 10765 of the tota
 
 
 ## What is the average daily activity pattern?
+Again dplyr is used to find the daily activity pattern, and the interval identifier with on average most number of steps is found with `which.max()`.
 
+```r
+pattern <- data %>% group_by(interval) %>% summarize(steps =mean(steps, na.rm=TRUE))
+pattern[which.max(fitta$steps), 1]
+```
 
+```
+## Source: local data frame [1 x 1]
+## 
+##   interval
+## 1      835
+```
 
 ## Imputing missing values
 

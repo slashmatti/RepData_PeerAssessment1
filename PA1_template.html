@@ -214,21 +214,7 @@ hr {
 <p>Using the dplyr package, the number of steps taken each day over dataset&#39;s period of 61 days is found and then plotted in a histogram with the following code.</p>
 
 <pre><code class="r">library(dplyr)
-</code></pre>
-
-<pre><code>## 
-## Attaching package: &#39;dplyr&#39;
-## 
-## The following object is masked from &#39;package:stats&#39;:
-## 
-##     filter
-## 
-## The following objects are masked from &#39;package:base&#39;:
-## 
-##     intersect, setdiff, setequal, union
-</code></pre>
-
-<pre><code class="r">data &lt;- read.csv(&quot;activity.csv&quot;)
+data &lt;- read.csv(&quot;activity.csv&quot;)
 daily &lt;- data %&gt;% group_by(date) %&gt;% summarize(steps =sum(steps))
 hist(daily$steps)
 </code></pre>
@@ -238,6 +224,18 @@ hist(daily$steps)
 <p>The mean is 1.0766189 &times; 10<sup>4</sup> and the median is 10765 of the total number of steps taken per day.</p>
 
 <h2>What is the average daily activity pattern?</h2>
+
+<p>Again dplyr is used to find the daily activity pattern, and the interval identifier with on average most number of steps is found with <code>which.max()</code>.</p>
+
+<pre><code class="r">pattern &lt;- data %&gt;% group_by(interval) %&gt;% summarize(steps =mean(steps, na.rm=TRUE))
+pattern[which.max(fitta$steps), 1]
+</code></pre>
+
+<pre><code>## Source: local data frame [1 x 1]
+## 
+##   interval
+## 1      835
+</code></pre>
 
 <h2>Imputing missing values</h2>
 
