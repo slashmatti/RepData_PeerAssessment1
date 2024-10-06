@@ -35,5 +35,3 @@ hist(daily.i$steps)
 ```
 
 With imputed data, the mean is `r mean(daily.i$steps)` and the median is `r median(daily.i$steps)` of the total number of steps taken per day.
-
-## Are there differences in activity patterns between weekdays and weekends?
